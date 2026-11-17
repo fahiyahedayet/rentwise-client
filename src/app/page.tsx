@@ -180,35 +180,36 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Search */}
-      <section className="mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="grid gap-4 rounded-xl border border-[#E9E5DE] bg-white p-4 shadow-sm md:grid-cols-[1fr_1fr_auto] md:items-center md:p-6">
-          <div className="flex items-center gap-3 px-3">
-            <Search className="text-[#7D7872]" size={21} />
-            <div className="flex-1">
-              <p className="text-xs font-semibold">What are you looking for?</p>
-              <input
-                type="text"
-                placeholder="Search equipment..."
-                className="mt-1 w-full bg-transparent text-sm outline-none placeholder:text-[#A7A19A]"
-              />
-            </div>
+      {/* Equipment Search */}
+      <section className="mx-auto max-w-7xl px-6 pb-16">
+        <div className="grid gap-4 rounded-xl border border-[#E9E5DE] bg-white p-6 md:grid-cols-[1fr_1fr_auto] md:items-center">
+
+          <div>
+            <label className="text-xs font-semibold">
+              What are you looking for?
+            </label>
+            <input
+              type="text"
+              placeholder="Search equipment..."
+              className="mt-2 w-full bg-transparent text-sm outline-none"
+            />
           </div>
 
-          <div className="flex items-center gap-3 border-t border-[#E9E5DE] px-3 py-4 md:border-t-0 md:border-l md:py-2 md:pl-6">
-            <Truck className="text-[#7D7872]" size={21} />
-            <div>
-              <p className="text-xs font-semibold">Location</p>
-              <p className="mt-1 text-sm text-[#A7A19A]">Choose your location</p>
-            </div>
+          <div className="border-t border-[#E9E5DE] pt-4 md:border-t-0 md:border-l md:pl-6 md:pt-0">
+            <label className="text-xs font-semibold">
+              Location
+            </label>
+            <input
+              type="text"
+              placeholder="Choose your location"
+              className="mt-2 w-full bg-transparent text-sm outline-none"
+            />
           </div>
 
-          <Link
-            href="/equipment"
-            className="rounded-lg bg-[#1E2022] px-8 py-4 text-center text-sm font-semibold text-white transition hover:bg-[#2B3A4A]"
-          >
+          <button className="rounded-lg bg-[#1E2022] px-8 py-4 text-sm font-semibold text-white hover:bg-[#2B3A4A]">
             Search Equipment
-          </Link>
+          </button>
+
         </div>
       </section>
 
