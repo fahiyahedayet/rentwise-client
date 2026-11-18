@@ -14,7 +14,7 @@ import {
   Wrench,
   ChevronRight,
 } from "lucide-react";
-
+import { Star, MapPin, ArrowRight } from "lucide-react";
 const categories = [
   { name: "Construction", icon: HardHat, count: "120+ items" },
   { name: "Photography", icon: Camera, count: "85+ items" },
@@ -265,80 +265,117 @@ export default function Home() {
 </section>
 
       {/* Featured Equipment */}
-      <section className="bg-[#EFEEE9]">
-        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-          <div className="flex flex-wrap items-end justify-between gap-5">
-            <div>
-              <p className="text-xs font-semibold tracking-[0.2em] text-[#7D7872] uppercase">
-                Handpicked for you
-              </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-                Featured equipment
-              </h2>
-              <p className="mt-3 text-sm text-[#7D7872]">
-                Quality equipment, ready for your next project.
-              </p>
+<section className="bg-[#EFEEE9]">
+  <div className="mx-auto max-w-7xl px-6 py-20">
+
+    <div className="flex items-end justify-between">
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-widest text-[#7D7872]">
+          Handpicked for you
+        </p>
+
+        <h2 className="mt-3 text-3xl font-semibold">
+          Featured Equipment
+        </h2>
+
+        <p className="mt-3 text-sm text-[#7D7872]">
+          Quality equipment, ready for your next project.
+        </p>
+      </div>
+
+      <Link
+        href="/equipment"
+        className="hidden items-center gap-2 text-sm font-semibold md:flex"
+      >
+        Explore all <ArrowRight size={17} />
+      </Link>
+    </div>
+
+    <div className="mt-10 grid gap-7 md:grid-cols-2 lg:grid-cols-3">
+
+      {[
+        {
+          name: "Professional Excavator",
+          category: "Construction",
+          location: "Dhaka, Bangladesh",
+          price: "৳8,500",
+          rating: "4.9",
+          image: "https://images.unsplash.com/photo-1580901368919-7738efb0f87e?w=900",
+        },
+        {
+          name: "Canon EOS R6 Camera",
+          category: "Photography",
+          location: "Chattogram, Bangladesh",
+          price: "৳2,500",
+          rating: "4.8",
+          image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=900",
+        },
+        {
+          name: "Heavy Duty Tractor",
+          category: "Agriculture",
+          location: "Sylhet, Bangladesh",
+          price: "৳5,000",
+          rating: "5.0",
+          image: "https://images.unsplash.com/photo-1592982537449-6f7a6e4a1f3b?w=900",
+        },
+      ].map((item) => (
+        <article
+          key={item.name}
+          className="overflow-hidden rounded-xl border border-[#E5E0D8] bg-white"
+        >
+          <div className="relative h-60 overflow-hidden bg-[#E9E5DE]">
+            <img
+              src={item.image}
+              alt={item.name}
+              className="h-full w-full object-cover transition duration-500 hover:scale-105"
+            />
+
+            <span className="absolute left-4 top-4 rounded-full bg-white px-3 py-1.5 text-[10px] font-semibold uppercase">
+              {item.category}
+            </span>
+          </div>
+
+          <div className="p-6">
+
+            <div className="flex items-center justify-between">
+              <span className="flex items-center gap-1 text-xs text-[#7D7872]">
+                <MapPin size={13} />
+                {item.location}
+              </span>
+
+              <span className="flex items-center gap-1 text-xs font-semibold">
+                <Star size={14} fill="#B49B69" stroke="#B49B69" />
+                {item.rating}
+              </span>
             </div>
-            <Link
-              href="/equipment"
-              className="inline-flex items-center gap-2 text-sm font-semibold"
-            >
-              Explore all <ArrowRight size={17} />
-            </Link>
-          </div>
 
-          <div className="mt-10 grid gap-7 md:grid-cols-2 lg:grid-cols-3">
-            {equipment.map((item) => (
-              <article
-                key={item.name}
-                className="overflow-hidden rounded-xl border border-[#E5E0D8] bg-white"
+            <h3 className="mt-4 text-lg font-semibold">
+              {item.name}
+            </h3>
+
+            <div className="mt-6 flex items-center justify-between border-t border-[#E9E5DE] pt-5">
+              <p className="text-lg font-semibold">
+                {item.price}
+                <span className="text-xs font-normal text-[#7D7872]">
+                  /day
+                </span>
+              </p>
+
+              <Link
+                href="/equipment"
+                className="rounded-lg border border-[#E9E5DE] px-4 py-2.5 text-xs font-semibold transition hover:bg-[#1E2022] hover:text-white"
               >
-                <div className="relative h-60 overflow-hidden bg-[#E9E5DE]">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="h-full w-full object-cover transition duration-500 hover:scale-105"
-                  />
-                  <span className="absolute top-4 left-4 rounded-full bg-white px-3 py-1.5 text-[10px] font-semibold tracking-wider uppercase">
-                    {item.category}
-                  </span>
-                </div>
+                View Details
+              </Link>
+            </div>
 
-                <div className="p-6">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-[#7D7872]">
-                      {item.location}
-                    </span>
-                    <span className="flex items-center gap-1 text-xs font-semibold">
-                      <Star size={14} fill="#B49B69" stroke="#B49B69" />
-                      {item.rating}
-                    </span>
-                  </div>
-
-                  <h3 className="mt-3 text-lg font-semibold">
-                    {item.name}
-                  </h3>
-
-                  <div className="mt-6 flex items-center justify-between border-t border-[#E9E5DE] pt-5">
-                    <p className="text-lg font-semibold">
-                      {item.price}
-                      <span className="text-xs font-normal text-[#7D7872]">
-                        {item.period}
-                      </span>
-                    </p>
-                    <Link
-                      href="/equipment"
-                      className="rounded-lg border border-[#E9E5DE] px-4 py-2.5 text-xs font-semibold transition hover:bg-[#1E2022] hover:text-white"
-                    >
-                      View Details
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            ))}
           </div>
-        </div>
-      </section>
+        </article>
+      ))}
+
+    </div>
+  </div>
+</section>
 
       {/* Why Rentwise */}
       <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
