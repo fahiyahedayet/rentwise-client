@@ -438,29 +438,36 @@ export default function Home() {
   </div>
 </section>
 
-      {/* CTA */}
-      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
-        <div className="flex flex-col items-start justify-between gap-8 rounded-2xl bg-[#1E2022] p-9 text-white md:flex-row md:items-center md:p-14">
-          <div>
-            <p className="text-xs font-semibold tracking-[0.2em] text-[#B6B0A7] uppercase">
-              Have equipment to share?
-            </p>
-            <h2 className="mt-4 max-w-xl text-3xl leading-tight font-semibold sm:text-4xl">
-              Turn your idle equipment into opportunity.
-            </h2>
-            <p className="mt-4 text-sm leading-7 text-[#B6B0A7]">
-              List your equipment, connect with renters, and earn on your terms.
-            </p>
-          </div>
+    {/* Owner CTA */}
+<section className="mx-auto max-w-7xl px-6 pb-24">
 
-          <Link
-            href="/register"
-            className="inline-flex shrink-0 items-center gap-3 rounded-lg bg-white px-7 py-4 text-sm font-semibold text-[#1E2022] transition hover:bg-[#E9E5DE]"
-          >
-            Become an Owner <ArrowUpRight size={18} />
-          </Link>
-        </div>
-      </section>
+  <div className="flex flex-col items-start justify-between gap-8 rounded-2xl bg-[#1E2022] p-9 text-white md:flex-row md:items-center md:p-14">
+
+    <div>
+      <p className="text-xs font-semibold uppercase tracking-widest text-[#B6B0A7]">
+        Become an equipment owner
+      </p>
+
+      <h2 className="mt-5 max-w-xl text-3xl font-semibold leading-tight sm:text-4xl">
+        Your equipment deserves to work harder.
+      </h2>
+
+      <p className="mt-5 max-w-lg text-sm leading-7 text-[#B6B0A7]">
+        Turn your idle equipment into income. List your assets,
+        connect with renters, and earn on your own terms.
+      </p>
+    </div>
+
+    <Link
+      href="/register"
+      className="inline-flex shrink-0 items-center gap-3 rounded-lg bg-white px-7 py-4 text-sm font-semibold text-[#1E2022] transition hover:bg-[#E9E5DE]"
+    >
+      Start Listing
+      <ArrowUpRight size={18} />
+    </Link>
+
+  </div>
+</section>
 
       {/* Footer */}
       <footer className="border-t border-[#E9E5DE] bg-white">
