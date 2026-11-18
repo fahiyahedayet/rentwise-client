@@ -470,56 +470,58 @@ export default function Home() {
 </section>
 
       {/* Footer */}
-      <footer className="border-t border-[#E9E5DE] bg-white">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:px-10">
-          <div>
-            <Link href="/" className="text-2xl font-bold tracking-tight">
-              rentwise<span className="text-[#7D7872]">.</span>
-            </Link>
-            <p className="mt-5 max-w-xs text-sm leading-7 text-[#7D7872]">
-              Making equipment rental simpler, smarter, and more accessible for everyone.
-            </p>
-          </div>
+<footer className="bg-white">
+  <div className="mx-auto max-w-7xl px-6 py-14">
 
-          <div>
-            <h3 className="text-sm font-semibold">Explore</h3>
-            <div className="mt-5 flex flex-col gap-4 text-sm text-[#7D7872]">
-              <Link href="/equipment">Browse Equipment</Link>
-              <Link href="/equipment">Categories</Link>
-              <Link href="/register">Become an Owner</Link>
-            </div>
-          </div>
+    <div className="grid gap-10 border-b border-[#E9E5DE] pb-12 sm:grid-cols-2 lg:grid-cols-4">
 
-          <div>
-            <h3 className="text-sm font-semibold">Company</h3>
-            <div className="mt-5 flex flex-col gap-4 text-sm text-[#7D7872]">
-              <Link href="/about">About Us</Link>
-              <Link href="/contact">Contact</Link>
-              <Link href="/about">Privacy Policy</Link>
-            </div>
-          </div>
+      <div>
+        <Link href="/" className="text-2xl font-bold tracking-tight">
+          rentwise<span className="text-[#7D7872]">.</span>
+        </Link>
 
-          <div>
-            <h3 className="text-sm font-semibold">Get in touch</h3>
-            <p className="mt-5 text-sm leading-7 text-[#7D7872]">
-              Have questions about renting or listing equipment? We&apos;re here to help.
-            </p>
-            <Link
-              href="/contact"
-              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold"
-            >
-              Contact us <ArrowUpRight size={15} />
-            </Link>
-          </div>
-        </div>
+        <p className="mt-4 max-w-xs text-sm leading-7 text-[#7D7872]">
+          Rent the equipment you need. Earn from the equipment you own.
+          A smarter way to share resources.
+        </p>
+      </div>
 
-        <div className="border-t border-[#E9E5DE]">
-          <div className="mx-auto flex max-w-7xl flex-col justify-between gap-3 px-6 py-6 text-xs text-[#7D7872] sm:flex-row lg:px-10">
-            <p>© 2026 Rentwise. All rights reserved.</p>
-            <p>Rent smarter. Work better.</p>
-          </div>
-        </div>
-      </footer>
+      <div>
+        <h3 className="text-sm font-semibold">Explore</h3>
+        <ul className="mt-5 space-y-3 text-sm text-[#7D7872]">
+          <li><Link href="/browse" className="hover:text-black">Browse Equipment</Link></li>
+          <li><Link href="/categories" className="hover:text-black">Categories</Link></li>
+          <li><Link href="/how-it-works" className="hover:text-black">How It Works</Link></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 className="text-sm font-semibold">For Owners</h3>
+        <ul className="mt-5 space-y-3 text-sm text-[#7D7872]">
+          <li><Link href="/register" className="hover:text-black">List Equipment</Link></li>
+          <li><Link href="/dashboard" className="hover:text-black">Owner Dashboard</Link></li>
+          <li><Link href="/help" className="hover:text-black">Help Center</Link></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 className="text-sm font-semibold">Company</h3>
+        <ul className="mt-5 space-y-3 text-sm text-[#7D7872]">
+          <li><Link href="/about" className="hover:text-black">About Us</Link></li>
+          <li><Link href="/contact" className="hover:text-black">Contact</Link></li>
+          <li><Link href="/privacy" className="hover:text-black">Privacy Policy</Link></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div className="flex flex-col justify-between gap-4 pt-7 text-xs text-[#7D7872] sm:flex-row">
+      <p>© 2026 Rentwise. All rights reserved.</p>
+      <p>Made for smarter renting.</p>
+    </div>
+
+  </div>
+</footer>
     </main>
   );
 }
