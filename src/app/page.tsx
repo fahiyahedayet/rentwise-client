@@ -377,56 +377,66 @@ export default function Home() {
   </div>
 </section>
 
-      {/* Why Rentwise */}
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold tracking-[0.2em] text-[#7D7872] uppercase">
-            The Rentwise difference
-          </p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-            Renting made refreshingly simple.
-          </h2>
-        </div>
+    {/* Why Choose Rentwise */}
+<section className="mx-auto max-w-7xl px-6 py-24">
 
-        <div className="mt-14 grid gap-10 md:grid-cols-3">
-          {[
-            {
-              icon: ShieldCheck,
-              title: "Trusted & Verified",
-              description:
-                "Find quality equipment from verified owners and rent with peace of mind.",
-            },
-            {
-              icon: Clock3,
-              title: "Save Time & Money",
-              description:
-                "Get the equipment you need without the expense of owning and maintaining it.",
-            },
-            {
-              icon: Truck,
-              title: "Flexible & Convenient",
-              description:
-                "Discover equipment nearby and find rental options that fit your schedule.",
-            },
-          ].map((feature) => {
-            const Icon = feature.icon;
+  <div className="mx-auto max-w-2xl text-center">
+    <p className="text-xs font-semibold uppercase tracking-widest text-[#7D7872]">
+      The Rentwise Difference
+    </p>
 
-            return (
-              <div key={feature.title} className="text-center">
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-xl bg-[#E9E5DE]">
-                  <Icon size={27} strokeWidth={1.5} />
-                </div>
-                <h3 className="mt-6 text-lg font-semibold">
-                  {feature.title}
-                </h3>
-                <p className="mx-auto mt-3 max-w-xs text-sm leading-7 text-[#7D7872]">
-                  {feature.description}
-                </p>
-              </div>
-            );
-          })}
-        </div>
-      </section>
+    <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">
+      Renting made refreshingly simple.
+    </h2>
+
+    <p className="mt-4 text-sm leading-7 text-[#7D7872]">
+      Everything you need to rent equipment with confidence,
+      convenience, and complete peace of mind.
+    </p>
+  </div>
+
+  <div className="mt-16 grid gap-12 md:grid-cols-3">
+
+    {[
+      {
+        icon: "01",
+        title: "Trusted & Verified",
+        description:
+          "Browse quality equipment from verified owners. Every listing goes through an approval process.",
+      },
+      {
+        icon: "02",
+        title: "Save Time & Money",
+        description:
+          "Get access to the equipment you need without the cost of purchasing and maintaining it.",
+      },
+      {
+        icon: "03",
+        title: "Flexible & Convenient",
+        description:
+          "Find equipment nearby and choose rental options that fit your schedule and budget.",
+      },
+    ].map((feature) => (
+      <div
+        key={feature.icon}
+        className="border-t border-[#DAD4CB] pt-7"
+      >
+        <span className="text-sm font-semibold text-[#A39B90]">
+          {feature.icon}
+        </span>
+
+        <h3 className="mt-6 text-xl font-semibold">
+          {feature.title}
+        </h3>
+
+        <p className="mt-4 text-sm leading-7 text-[#7D7872]">
+          {feature.description}
+        </p>
+      </div>
+    ))}
+
+  </div>
+</section>
 
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
