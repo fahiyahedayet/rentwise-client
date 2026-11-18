@@ -1,20 +1,23 @@
+
 import Link from "next/link";
 import {
   ArrowRight,
   ArrowUpRight,
-  Search,
   ShieldCheck,
-  Truck,
-  Clock3,
   Star,
   HardHat,
   Camera,
   Car,
   Tractor,
   Wrench,
-  ChevronRight,
+  MapPin,
+  Search,
+  Truck,
+  Clock3,
 } from "lucide-react";
-import { Star, MapPin, ArrowRight } from "lucide-react";
+
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 const categories = [
   { name: "Construction", icon: HardHat, count: "120+ items" },
   { name: "Photography", icon: Camera, count: "85+ items" },
@@ -29,7 +32,6 @@ const equipment = [
     category: "Construction",
     location: "Dhaka, Bangladesh",
     price: "৳8,500",
-    period: "/day",
     rating: "4.9",
     image:
       "https://images.unsplash.com/photo-1580901368919-7738efb0f87e?w=900&q=85",
@@ -39,7 +41,6 @@ const equipment = [
     category: "Photography",
     location: "Chattogram, Bangladesh",
     price: "৳2,500",
-    period: "/day",
     rating: "4.8",
     image:
       "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=900&q=85",
@@ -49,130 +50,131 @@ const equipment = [
     category: "Agriculture",
     location: "Sylhet, Bangladesh",
     price: "৳5,000",
-    period: "/day",
     rating: "5.0",
     image:
       "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=900&q=85",
   },
 ];
 
+const features = [
+  {
+    number: "01",
+    title: "Trusted & Verified",
+    description:
+      "Browse quality equipment from verified owners. Every listing goes through an approval process.",
+  },
+  {
+    number: "02",
+    title: "Save Time & Money",
+    description:
+      "Get access to the equipment you need without the cost of purchasing and maintaining it.",
+  },
+  {
+    number: "03",
+    title: "Flexible & Convenient",
+    description:
+      "Find equipment nearby and choose rental options that fit your schedule and budget.",
+  },
+];
+
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#F8F7F4] text-[#1E2022]">
-      {/* Navbar */}
-      <header className="sticky top-0 z-50 border-b border-[#E9E5DE] bg-[#F8F7F4]/95 backdrop-blur-md">
-        <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
-          <Link href="/" className="text-2xl font-bold tracking-tight">
-            rentwise<span className="text-[#7D7872]">.</span>
-          </Link>
+    <main className="min-h-screen overflow-hidden bg-[#F8F7F4] text-[#1E2022]">
+      <Navbar />
 
-          <div className="hidden items-center gap-9 text-sm font-medium text-[#55514D] md:flex">
-            <Link href="/" className="text-[#1E2022]">Home</Link>
-            <Link href="/equipment" className="transition hover:text-black">
-              Browse Equipment
-            </Link>
-            <Link href="/about" className="transition hover:text-black">
-              About Us
-            </Link>
-            <Link href="/contact" className="transition hover:text-black">
-              Contact
-            </Link>
-          </div>
+      {/* Hero Section */}
+      <section className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-14 sm:px-6 sm:py-16 lg:grid-cols-2 lg:px-10 lg:py-24">
 
-          <div className="flex items-center gap-3">
-            <Link
-              href="/login"
-              className="hidden px-4 py-2.5 text-sm font-semibold sm:block"
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/register"
-              className="rounded-lg bg-[#1E2022] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#2B3A4A]"
-            >
-              Get Started
-            </Link>
-          </div>
-        </nav>
-      </header>
-
-      {/* Hero */}
-      <section className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-2 lg:px-10 lg:py-24">
         <div>
-          <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-[#E0DAD1] bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-[#7D7872]">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#E0DAD1] bg-white px-4 py-2 text-[10px] font-semibold tracking-[0.15em] text-[#7D7872] uppercase sm:text-xs">
             <span className="h-2 w-2 rounded-full bg-[#647565]" />
             The smarter way to rent
           </div>
 
-          <h1 className="max-w-2xl text-5xl leading-[1.12] font-semibold tracking-tight sm:text-6xl lg:text-[68px]">
+          <h1 className="max-w-2xl text-4xl leading-[1.15] font-semibold tracking-tight sm:text-5xl md:text-6xl lg:text-[68px]">
             Everything you need.
             <span className="mt-2 block font-serif font-normal italic text-[#7D7872]">
               Nothing you don&apos;t.
             </span>
           </h1>
 
-          <p className="mt-7 max-w-lg text-base leading-8 text-[#77716A]">
+          <p className="mt-6 max-w-lg text-sm leading-7 text-[#77716A] sm:text-base sm:leading-8">
             Access the equipment you need, exactly when you need it.
             Discover a smarter way to rent, work, and grow.
           </p>
 
-          <div className="mt-9 flex flex-wrap gap-4">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
             <Link
               href="/equipment"
-              className="inline-flex items-center gap-3 rounded-lg bg-[#1E2022] px-7 py-4 text-sm font-semibold text-white transition hover:bg-[#2B3A4A]"
+              className="inline-flex items-center justify-center gap-3 rounded-lg bg-[#1E2022] px-6 py-4 text-sm font-semibold text-white transition hover:bg-[#2B3A4A] sm:px-7"
             >
-              Explore Equipment <ArrowUpRight size={18} />
+              Explore Equipment
+              <ArrowUpRight size={18} />
             </Link>
+
             <Link
               href="/register"
-              className="inline-flex items-center gap-2 rounded-lg border border-[#DAD4CB] px-7 py-4 text-sm font-semibold transition hover:bg-white"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-[#DAD4CB] px-6 py-4 text-sm font-semibold transition hover:bg-white sm:px-7"
             >
               List Your Equipment
             </Link>
           </div>
 
-          <div className="mt-14 flex flex-wrap gap-8 border-t border-[#E9E5DE] pt-8">
+          <div className="mt-12 grid grid-cols-3 gap-3 border-t border-[#E9E5DE] pt-7 sm:mt-14 sm:gap-8 sm:pt-8">
             <div>
-              <h3 className="text-3xl font-semibold">500+</h3>
-              <p className="mt-1 text-xs text-[#7D7872]">Equipment listed</p>
+              <h3 className="text-2xl font-semibold sm:text-3xl">500+</h3>
+              <p className="mt-1 text-[10px] text-[#7D7872] sm:text-xs">
+                Equipment listed
+              </p>
             </div>
+
             <div>
-              <h3 className="text-3xl font-semibold">1.2k+</h3>
-              <p className="mt-1 text-xs text-[#7D7872]">Happy customers</p>
+              <h3 className="text-2xl font-semibold sm:text-3xl">1.2k+</h3>
+              <p className="mt-1 text-[10px] text-[#7D7872] sm:text-xs">
+                Happy customers
+              </p>
             </div>
+
             <div>
-              <h3 className="text-3xl font-semibold">4.9/5</h3>
-              <p className="mt-1 text-xs text-[#7D7872]">Average rating</p>
+              <h3 className="text-2xl font-semibold sm:text-3xl">4.9/5</h3>
+              <p className="mt-1 text-[10px] text-[#7D7872] sm:text-xs">
+                Average rating
+              </p>
             </div>
           </div>
         </div>
 
-        <div className="relative">
-          <div className="relative h-[430px] overflow-hidden rounded-2xl bg-[#E9E5DE] sm:h-[540px]">
+        <div className="relative mt-2 sm:mt-0">
+          <div className="relative h-[300px] overflow-hidden rounded-2xl bg-[#E9E5DE] sm:h-[430px] lg:h-[540px]">
             <img
               src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=90"
               alt="Construction equipment at a work site"
               className="h-full w-full object-cover"
             />
+
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/5" />
 
-            <div className="absolute bottom-8 left-8 text-white">
-              <p className="text-xs font-medium tracking-[0.2em] uppercase">
+            <div className="absolute bottom-6 left-6 text-white sm:bottom-8 sm:left-8">
+              <p className="text-[10px] font-medium tracking-[0.2em] uppercase sm:text-xs">
                 Built for every project
               </p>
-              <h2 className="mt-3 max-w-sm text-3xl font-semibold">
+
+              <h2 className="mt-3 max-w-sm text-2xl font-semibold sm:text-3xl">
                 Get the right tools for the job.
               </h2>
             </div>
           </div>
 
-          <div className="absolute -bottom-6 -left-5 hidden items-center gap-4 rounded-xl border border-[#E9E5DE] bg-white p-5 shadow-sm sm:flex">
-            <div className="rounded-lg bg-[#F1EFEA] p-3">
-              <ShieldCheck size={25} />
+          <div className="absolute -bottom-5 left-4 flex items-center gap-3 rounded-xl border border-[#E9E5DE] bg-white p-3 shadow-sm sm:-bottom-6 sm:-left-5 sm:gap-4 sm:p-5">
+            <div className="rounded-lg bg-[#F1EFEA] p-2 sm:p-3">
+              <ShieldCheck size={22} />
             </div>
+
             <div>
-              <p className="text-sm font-semibold">Verified Equipment</p>
-              <p className="mt-1 text-xs text-[#7D7872]">
+              <p className="text-xs font-semibold sm:text-sm">
+                Verified Equipment
+              </p>
+              <p className="mt-1 text-[10px] text-[#7D7872] sm:text-xs">
                 Rent with confidence
               </p>
             </div>
@@ -181,347 +183,259 @@ export default function Home() {
       </section>
 
       {/* Equipment Search */}
-      <section className="mx-auto max-w-7xl px-6 pb-16">
-        <div className="grid gap-4 rounded-xl border border-[#E9E5DE] bg-white p-6 md:grid-cols-[1fr_1fr_auto] md:items-center">
+      <section className="mx-auto max-w-7xl px-5 pb-14 sm:px-6 sm:pb-16 lg:px-10">
+        <div className="grid gap-5 rounded-xl border border-[#E9E5DE] bg-white p-5 sm:p-7 md:grid-cols-[1fr_1fr_auto] md:items-center">
 
           <div>
             <label className="text-xs font-semibold">
               What are you looking for?
             </label>
-            <input
-              type="text"
-              placeholder="Search equipment..."
-              className="mt-2 w-full bg-transparent text-sm outline-none"
-            />
+
+            <div className="mt-3 flex items-center gap-3">
+              <Search size={18} className="shrink-0 text-[#7D7872]" />
+              <input
+                type="text"
+                placeholder="Search equipment..."
+                className="w-full bg-transparent text-sm outline-none"
+              />
+            </div>
           </div>
 
           <div className="border-t border-[#E9E5DE] pt-4 md:border-t-0 md:border-l md:pl-6 md:pt-0">
-            <label className="text-xs font-semibold">
-              Location
-            </label>
-            <input
-              type="text"
-              placeholder="Choose your location"
-              className="mt-2 w-full bg-transparent text-sm outline-none"
-            />
+            <label className="text-xs font-semibold">Location</label>
+
+            <div className="mt-3 flex items-center gap-3">
+              <MapPin size={18} className="shrink-0 text-[#7D7872]" />
+              <input
+                type="text"
+                placeholder="Choose your location"
+                className="w-full bg-transparent text-sm outline-none"
+              />
+            </div>
           </div>
 
-          <button className="rounded-lg bg-[#1E2022] px-8 py-4 text-sm font-semibold text-white hover:bg-[#2B3A4A]">
+          <button className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#1E2022] px-7 py-4 text-sm font-semibold text-white transition hover:bg-[#2B3A4A]">
+            <Search size={17} />
             Search Equipment
           </button>
-
         </div>
       </section>
 
-     {/* Equipment Categories */}
-<section className="mx-auto max-w-7xl px-6 py-20">
+      {/* Equipment Categories */}
+      <section className="mx-auto max-w-7xl px-5 py-16 sm:px-6 sm:py-20 lg:px-10">
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold tracking-widest text-[#7D7872] uppercase">
+              Explore possibilities
+            </p>
 
-  <div className="flex items-end justify-between">
-    <div>
-      <p className="text-xs font-semibold uppercase tracking-widest text-[#7D7872]">
-        Explore possibilities
-      </p>
-
-      <h2 className="mt-3 text-3xl font-semibold">
-        Browse by category
-      </h2>
-    </div>
-
-    <Link
-      href="/equipment"
-      className="hidden text-sm font-semibold md:block"
-    >
-      View all →
-    </Link>
-  </div>
-
-  <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
-
-    {[
-      { name: "Construction", icon: "🏗️", count: "120+ items" },
-      { name: "Photography", icon: "📷", count: "85+ items" },
-      { name: "Vehicles", icon: "🚗", count: "64+ items" },
-      { name: "Agriculture", icon: "🚜", count: "42+ items" },
-      { name: "Tools & Machinery", icon: "🔧", count: "96+ items" },
-    ].map((category) => (
-      <Link
-        href="/equipment"
-        key={category.name}
-        className="group rounded-xl border border-[#E9E5DE] bg-white p-6 transition hover:-translate-y-1 hover:border-[#B9B1A6]"
-      >
-        <span className="text-3xl">{category.icon}</span>
-
-        <h3 className="mt-8 text-sm font-semibold">
-          {category.name}
-        </h3>
-
-        <p className="mt-2 text-xs text-[#7D7872]">
-          {category.count}
-        </p>
-      </Link>
-    ))}
-
-  </div>
-</section>
-
-      {/* Featured Equipment */}
-<section className="bg-[#EFEEE9]">
-  <div className="mx-auto max-w-7xl px-6 py-20">
-
-    <div className="flex items-end justify-between">
-      <div>
-        <p className="text-xs font-semibold uppercase tracking-widest text-[#7D7872]">
-          Handpicked for you
-        </p>
-
-        <h2 className="mt-3 text-3xl font-semibold">
-          Featured Equipment
-        </h2>
-
-        <p className="mt-3 text-sm text-[#7D7872]">
-          Quality equipment, ready for your next project.
-        </p>
-      </div>
-
-      <Link
-        href="/equipment"
-        className="hidden items-center gap-2 text-sm font-semibold md:flex"
-      >
-        Explore all <ArrowRight size={17} />
-      </Link>
-    </div>
-
-    <div className="mt-10 grid gap-7 md:grid-cols-2 lg:grid-cols-3">
-
-      {[
-        {
-          name: "Professional Excavator",
-          category: "Construction",
-          location: "Dhaka, Bangladesh",
-          price: "৳8,500",
-          rating: "4.9",
-          image: "https://images.unsplash.com/photo-1580901368919-7738efb0f87e?w=900",
-        },
-        {
-          name: "Canon EOS R6 Camera",
-          category: "Photography",
-          location: "Chattogram, Bangladesh",
-          price: "৳2,500",
-          rating: "4.8",
-          image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=900",
-        },
-        {
-          name: "Heavy Duty Tractor",
-          category: "Agriculture",
-          location: "Sylhet, Bangladesh",
-          price: "৳5,000",
-          rating: "5.0",
-          image: "https://images.unsplash.com/photo-1592982537449-6f7a6e4a1f3b?w=900",
-        },
-      ].map((item) => (
-        <article
-          key={item.name}
-          className="overflow-hidden rounded-xl border border-[#E5E0D8] bg-white"
-        >
-          <div className="relative h-60 overflow-hidden bg-[#E9E5DE]">
-            <img
-              src={item.image}
-              alt={item.name}
-              className="h-full w-full object-cover transition duration-500 hover:scale-105"
-            />
-
-            <span className="absolute left-4 top-4 rounded-full bg-white px-3 py-1.5 text-[10px] font-semibold uppercase">
-              {item.category}
-            </span>
+            <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">
+              Browse by category
+            </h2>
           </div>
 
-          <div className="p-6">
+          <Link
+            href="/equipment"
+            className="hidden shrink-0 text-sm font-semibold transition hover:text-[#7D7872] sm:block"
+          >
+            View all <ArrowRight size={15} className="ml-1 inline" />
+          </Link>
+        </div>
 
-            <div className="flex items-center justify-between">
-              <span className="flex items-center gap-1 text-xs text-[#7D7872]">
-                <MapPin size={13} />
-                {item.location}
-              </span>
+        <div className="mt-9 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
+          {categories.map((category) => {
+            const Icon = category.icon;
 
-              <span className="flex items-center gap-1 text-xs font-semibold">
-                <Star size={14} fill="#B49B69" stroke="#B49B69" />
-                {item.rating}
-              </span>
-            </div>
-
-            <h3 className="mt-4 text-lg font-semibold">
-              {item.name}
-            </h3>
-
-            <div className="mt-6 flex items-center justify-between border-t border-[#E9E5DE] pt-5">
-              <p className="text-lg font-semibold">
-                {item.price}
-                <span className="text-xs font-normal text-[#7D7872]">
-                  /day
-                </span>
-              </p>
-
+            return (
               <Link
                 href="/equipment"
-                className="rounded-lg border border-[#E9E5DE] px-4 py-2.5 text-xs font-semibold transition hover:bg-[#1E2022] hover:text-white"
+                key={category.name}
+                className="group rounded-xl border border-[#E9E5DE] bg-white p-4 transition hover:-translate-y-1 hover:border-[#B9B1A6] sm:p-6"
               >
-                View Details
+                <Icon
+                  size={28}
+                  strokeWidth={1.5}
+                  className="text-[#2B3A4A] transition group-hover:scale-110 sm:size-8"
+                />
+
+                <h3 className="mt-7 text-xs font-semibold sm:mt-8 sm:text-sm">
+                  {category.name}
+                </h3>
+
+                <p className="mt-2 text-[10px] text-[#7D7872] sm:text-xs">
+                  {category.count}
+                </p>
               </Link>
+            );
+          })}
+        </div>
+
+        <Link
+          href="/equipment"
+          className="mt-6 inline-flex items-center gap-2 text-sm font-semibold sm:hidden"
+        >
+          View all categories <ArrowRight size={16} />
+        </Link>
+      </section>
+
+      {/* Featured Equipment */}
+      <section className="bg-[#EFEEE9]">
+        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-6 sm:py-20 lg:px-10">
+
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <p className="text-xs font-semibold tracking-widest text-[#7D7872] uppercase">
+                Handpicked for you
+              </p>
+
+              <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">
+                Featured Equipment
+              </h2>
+
+              <p className="mt-3 text-xs leading-6 text-[#7D7872] sm:text-sm">
+                Quality equipment, ready for your next project.
+              </p>
             </div>
 
+            <Link
+              href="/equipment"
+              className="hidden shrink-0 items-center gap-2 text-sm font-semibold transition hover:text-[#7D7872] sm:flex"
+            >
+              Explore all <ArrowRight size={17} />
+            </Link>
           </div>
-        </article>
-      ))}
 
-    </div>
-  </div>
-</section>
+          <div className="mt-9 grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-7">
+            {equipment.map((item) => (
+              <article
+                key={item.name}
+                className="overflow-hidden rounded-xl border border-[#E5E0D8] bg-white transition hover:-translate-y-1"
+              >
+                <div className="relative h-52 overflow-hidden bg-[#E9E5DE] sm:h-60">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="h-full w-full object-cover transition duration-500 hover:scale-105"
+                  />
 
-    {/* Why Choose Rentwise */}
-<section className="mx-auto max-w-7xl px-6 py-24">
+                  <span className="absolute top-4 left-4 rounded-full bg-white px-3 py-1.5 text-[10px] font-semibold uppercase">
+                    {item.category}
+                  </span>
+                </div>
 
-  <div className="mx-auto max-w-2xl text-center">
-    <p className="text-xs font-semibold uppercase tracking-widest text-[#7D7872]">
-      The Rentwise Difference
-    </p>
+                <div className="p-5 sm:p-6">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="flex items-center gap-1 text-[10px] text-[#7D7872] sm:text-xs">
+                      <MapPin size={13} />
+                      {item.location}
+                    </span>
 
-    <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">
-      Renting made refreshingly simple.
-    </h2>
+                    <span className="flex shrink-0 items-center gap-1 text-xs font-semibold">
+                      <Star
+                        size={14}
+                        fill="#B49B69"
+                        stroke="#B49B69"
+                      />
+                      {item.rating}
+                    </span>
+                  </div>
 
-    <p className="mt-4 text-sm leading-7 text-[#7D7872]">
-      Everything you need to rent equipment with confidence,
-      convenience, and complete peace of mind.
-    </p>
-  </div>
+                  <h3 className="mt-4 text-base font-semibold sm:text-lg">
+                    {item.name}
+                  </h3>
 
-  <div className="mt-16 grid gap-12 md:grid-cols-3">
+                  <div className="mt-5 flex items-center justify-between gap-2 border-t border-[#E9E5DE] pt-5">
+                    <p className="text-base font-semibold sm:text-lg">
+                      {item.price}
+                      <span className="text-xs font-normal text-[#7D7872]">
+                        /day
+                      </span>
+                    </p>
 
-    {[
-      {
-        icon: "01",
-        title: "Trusted & Verified",
-        description:
-          "Browse quality equipment from verified owners. Every listing goes through an approval process.",
-      },
-      {
-        icon: "02",
-        title: "Save Time & Money",
-        description:
-          "Get access to the equipment you need without the cost of purchasing and maintaining it.",
-      },
-      {
-        icon: "03",
-        title: "Flexible & Convenient",
-        description:
-          "Find equipment nearby and choose rental options that fit your schedule and budget.",
-      },
-    ].map((feature) => (
-      <div
-        key={feature.icon}
-        className="border-t border-[#DAD4CB] pt-7"
-      >
-        <span className="text-sm font-semibold text-[#A39B90]">
-          {feature.icon}
-        </span>
+                    <Link
+                      href="/equipment"
+                      className="rounded-lg border border-[#E9E5DE] px-3 py-2.5 text-[10px] font-semibold transition hover:bg-[#1E2022] hover:text-white sm:px-4 sm:text-xs"
+                    >
+                      View Details
+                    </Link>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        <h3 className="mt-6 text-xl font-semibold">
-          {feature.title}
-        </h3>
+      {/* Why Choose Rentwise */}
+      <section className="mx-auto max-w-7xl px-5 py-16 sm:px-6 sm:py-24 lg:px-10">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-xs font-semibold tracking-widest text-[#7D7872] uppercase">
+            The Rentwise Difference
+          </p>
 
-        <p className="mt-4 text-sm leading-7 text-[#7D7872]">
-          {feature.description}
-        </p>
-      </div>
-    ))}
+          <h2 className="mt-3 text-2xl font-semibold sm:text-4xl">
+            Renting made refreshingly simple.
+          </h2>
 
-  </div>
-</section>
+          <p className="mt-4 text-sm leading-7 text-[#7D7872]">
+            Everything you need to rent equipment with confidence,
+            convenience, and complete peace of mind.
+          </p>
+        </div>
 
-    {/* Owner CTA */}
-<section className="mx-auto max-w-7xl px-6 pb-24">
+        <div className="mt-12 grid gap-9 sm:mt-16 md:grid-cols-3 md:gap-12">
+          {features.map((feature) => (
+            <div
+              key={feature.number}
+              className="border-t border-[#DAD4CB] pt-6 sm:pt-7"
+            >
+              <span className="text-sm font-semibold text-[#A39B90]">
+                {feature.number}
+              </span>
 
-  <div className="flex flex-col items-start justify-between gap-8 rounded-2xl bg-[#1E2022] p-9 text-white md:flex-row md:items-center md:p-14">
+              <h3 className="mt-5 text-lg font-semibold sm:mt-6 sm:text-xl">
+                {feature.title}
+              </h3>
 
-    <div>
-      <p className="text-xs font-semibold uppercase tracking-widest text-[#B6B0A7]">
-        Become an equipment owner
-      </p>
+              <p className="mt-3 text-sm leading-7 text-[#7D7872] sm:mt-4">
+                {feature.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
 
-      <h2 className="mt-5 max-w-xl text-3xl font-semibold leading-tight sm:text-4xl">
-        Your equipment deserves to work harder.
-      </h2>
+      {/* Owner CTA */}
+      <section className="mx-auto max-w-7xl px-5 pb-16 sm:px-6 sm:pb-24 lg:px-10">
+        <div className="flex flex-col items-start justify-between gap-8 rounded-2xl bg-[#1E2022] p-7 text-white sm:p-10 md:flex-row md:items-center md:p-14">
+          <div>
+            <p className="text-xs font-semibold tracking-widest text-[#B6B0A7] uppercase">
+              Become an equipment owner
+            </p>
 
-      <p className="mt-5 max-w-lg text-sm leading-7 text-[#B6B0A7]">
-        Turn your idle equipment into income. List your assets,
-        connect with renters, and earn on your own terms.
-      </p>
-    </div>
+            <h2 className="mt-5 max-w-xl text-2xl leading-tight font-semibold sm:text-4xl">
+              Your equipment deserves to work harder.
+            </h2>
 
-    <Link
-      href="/register"
-      className="inline-flex shrink-0 items-center gap-3 rounded-lg bg-white px-7 py-4 text-sm font-semibold text-[#1E2022] transition hover:bg-[#E9E5DE]"
-    >
-      Start Listing
-      <ArrowUpRight size={18} />
-    </Link>
+            <p className="mt-5 max-w-lg text-sm leading-7 text-[#B6B0A7]">
+              Turn your idle equipment into income. List your assets,
+              connect with renters, and earn on your own terms.
+            </p>
+          </div>
 
-  </div>
-</section>
+          <Link
+            href="/register"
+            className="inline-flex w-full shrink-0 items-center justify-center gap-3 rounded-lg bg-white px-7 py-4 text-sm font-semibold text-[#1E2022] transition hover:bg-[#E9E5DE] sm:w-auto"
+          >
+            Start Listing
+            <ArrowUpRight size={18} />
+          </Link>
+        </div>
+      </section>
 
       {/* Footer */}
-<footer className="bg-white">
-  <div className="mx-auto max-w-7xl px-6 py-14">
+      <Footer />
 
-    <div className="grid gap-10 border-b border-[#E9E5DE] pb-12 sm:grid-cols-2 lg:grid-cols-4">
-
-      <div>
-        <Link href="/" className="text-2xl font-bold tracking-tight">
-          rentwise<span className="text-[#7D7872]">.</span>
-        </Link>
-
-        <p className="mt-4 max-w-xs text-sm leading-7 text-[#7D7872]">
-          Rent the equipment you need. Earn from the equipment you own.
-          A smarter way to share resources.
-        </p>
-      </div>
-
-      <div>
-        <h3 className="text-sm font-semibold">Explore</h3>
-        <ul className="mt-5 space-y-3 text-sm text-[#7D7872]">
-          <li><Link href="/browse" className="hover:text-black">Browse Equipment</Link></li>
-          <li><Link href="/categories" className="hover:text-black">Categories</Link></li>
-          <li><Link href="/how-it-works" className="hover:text-black">How It Works</Link></li>
-        </ul>
-      </div>
-
-      <div>
-        <h3 className="text-sm font-semibold">For Owners</h3>
-        <ul className="mt-5 space-y-3 text-sm text-[#7D7872]">
-          <li><Link href="/register" className="hover:text-black">List Equipment</Link></li>
-          <li><Link href="/dashboard" className="hover:text-black">Owner Dashboard</Link></li>
-          <li><Link href="/help" className="hover:text-black">Help Center</Link></li>
-        </ul>
-      </div>
-
-      <div>
-        <h3 className="text-sm font-semibold">Company</h3>
-        <ul className="mt-5 space-y-3 text-sm text-[#7D7872]">
-          <li><Link href="/about" className="hover:text-black">About Us</Link></li>
-          <li><Link href="/contact" className="hover:text-black">Contact</Link></li>
-          <li><Link href="/privacy" className="hover:text-black">Privacy Policy</Link></li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div className="flex flex-col justify-between gap-4 pt-7 text-xs text-[#7D7872] sm:flex-row">
-      <p>© 2026 Rentwise. All rights reserved.</p>
-      <p>Made for smarter renting.</p>
-    </div>
-
-  </div>
-</footer>
     </main>
   );
 }
