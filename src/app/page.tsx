@@ -213,51 +213,56 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Categories */}
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-        <div className="flex flex-wrap items-end justify-between gap-5">
-          <div>
-            <p className="text-xs font-semibold tracking-[0.2em] text-[#7D7872] uppercase">
-              Explore possibilities
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-              Browse by category
-            </h2>
-          </div>
-          <Link
-            href="/equipment"
-            className="inline-flex items-center gap-2 text-sm font-semibold"
-          >
-            View all categories <ArrowRight size={17} />
-          </Link>
-        </div>
+     {/* Equipment Categories */}
+<section className="mx-auto max-w-7xl px-6 py-20">
 
-        <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
-          {categories.map((category) => {
-            const Icon = category.icon;
+  <div className="flex items-end justify-between">
+    <div>
+      <p className="text-xs font-semibold uppercase tracking-widest text-[#7D7872]">
+        Explore possibilities
+      </p>
 
-            return (
-              <Link
-                href="/equipment"
-                key={category.name}
-                className="group rounded-xl border border-[#E9E5DE] bg-white p-6 transition hover:-translate-y-1 hover:border-[#B9B1A6]"
-              >
-                <Icon size={29} strokeWidth={1.5} />
-                <h3 className="mt-8 text-sm font-semibold">
-                  {category.name}
-                </h3>
-                <p className="mt-2 text-xs text-[#7D7872]">
-                  {category.count}
-                </p>
-                <ChevronRight
-                  size={17}
-                  className="mt-5 text-[#A7A19A] transition group-hover:translate-x-1 group-hover:text-black"
-                />
-              </Link>
-            );
-          })}
-        </div>
-      </section>
+      <h2 className="mt-3 text-3xl font-semibold">
+        Browse by category
+      </h2>
+    </div>
+
+    <Link
+      href="/equipment"
+      className="hidden text-sm font-semibold md:block"
+    >
+      View all →
+    </Link>
+  </div>
+
+  <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+
+    {[
+      { name: "Construction", icon: "🏗️", count: "120+ items" },
+      { name: "Photography", icon: "📷", count: "85+ items" },
+      { name: "Vehicles", icon: "🚗", count: "64+ items" },
+      { name: "Agriculture", icon: "🚜", count: "42+ items" },
+      { name: "Tools & Machinery", icon: "🔧", count: "96+ items" },
+    ].map((category) => (
+      <Link
+        href="/equipment"
+        key={category.name}
+        className="group rounded-xl border border-[#E9E5DE] bg-white p-6 transition hover:-translate-y-1 hover:border-[#B9B1A6]"
+      >
+        <span className="text-3xl">{category.icon}</span>
+
+        <h3 className="mt-8 text-sm font-semibold">
+          {category.name}
+        </h3>
+
+        <p className="mt-2 text-xs text-[#7D7872]">
+          {category.count}
+        </p>
+      </Link>
+    ))}
+
+  </div>
+</section>
 
       {/* Featured Equipment */}
       <section className="bg-[#EFEEE9]">
