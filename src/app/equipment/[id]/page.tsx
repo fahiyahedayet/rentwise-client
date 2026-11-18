@@ -186,16 +186,21 @@ export default async function EquipmentDetailsPage({
             </div>
 
             {/* Book Now */}
-            <button
-              disabled={!item.available}
-              className="mt-7 w-full rounded-xl bg-[#1E2022] px-6 py-4 text-sm font-medium text-white transition hover:bg-[#2B3A4A] disabled:cursor-not-allowed disabled:bg-gray-400"
-            >
-              {item.available ? "Book Now" : "Currently Unavailable"}
-            </button>
+           <Link
+  href={`/equipment/${item.id}/booking`}
+  className={`mt-7 flex w-full items-center justify-center rounded-xl px-6 py-4 text-sm font-medium text-white transition ${
+    item.available
+      ? "bg-[#1E2022] hover:bg-[#2B3A4A]"
+      : "pointer-events-none cursor-not-allowed bg-gray-400"
+  }`}
+  aria-disabled={!item.available}
+>
+  {item.available ? "Book Now" : "Currently Unavailable"}
+</Link>
 
-            <p className="mt-3 text-center text-xs text-[#7D7872]">
-              Booking functionality will be available soon.
-            </p>
+<p className="mt-3 text-center text-xs text-[#7D7872]">
+  Select your rental dates and submit your booking request.
+</p>
           </div>
         </div>
       </section>
