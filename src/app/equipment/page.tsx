@@ -4,6 +4,7 @@ import { Search, SlidersHorizontal } from "lucide-react";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import EquipmentCard from "../components/EquipmentCard";
 
 const equipment = [
   {
@@ -92,6 +93,20 @@ export default function EquipmentPage() {
             <SlidersHorizontal size={16} />
             Filters
           </button>
+        </div>
+                {/* Equipment Grid */}
+        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {equipment.map((item) => (
+            <EquipmentCard
+              key={item.id}
+              id={item.id}
+              name={item.name}
+              category={item.category}
+              location={item.location}
+              price={item.price}
+              image={item.image}
+            />
+          ))}
         </div>
       </section>
 
