@@ -2,9 +2,11 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
+import toast from "react-hot-toast";
 import {
   User,
   Mail,
@@ -18,26 +20,75 @@ import {
 } from "lucide-react";
 
 export default function RegisterPage() {
+  const router = useRouter();
+
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const hasUppercase = /[A-Z]/.test(password);
   const hasLowercase = /[a-z]/.test(password);
   const hasMinLength = password.length >= 6;
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
 
     if (!hasUppercase || !hasLowercase || !hasMinLength) {
-      setError(
-        "Password must contain uppercase, lowercase letters and at least 6 characters."
-      );
+      const message =
+        "Password must contain uppercase, lowercase letters and at least 6 characters.";
+
+      setError(message);
+      toast.error(message);
       return;
     }
 
-    setError("Password valid! Backend registration will be connected next.");
+    const formData = new FormData(e.currentTarget);
+
+    const userData = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      photo: formData.get("photo") as string,
+      password,
+    };
+
+    try {
+      setLoading(true);
+
+      const API_URL =
+        process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+
+      const response = await fetch(`${API_URL}/api/auth/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(userData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Registration failed.");
+      }
+
+      toast.success("Account created successfully!");
+
+      router.push("/");
+      router.refresh();
+    } catch (err) {
+      const message =
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again.";
+
+      setError(message);
+      toast.error(message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -46,7 +97,6 @@ export default function RegisterPage() {
 
       <main className="min-h-screen bg-[#F8F7F4] px-5 py-14 sm:px-8">
         <div className="mx-auto grid max-w-6xl overflow-hidden rounded-3xl border border-[#E9E5DE] bg-white shadow-sm lg:grid-cols-2">
-
           <div className="flex flex-col justify-between bg-[#1E2022] p-8 text-white sm:p-12 lg:p-14">
             <div>
               <span className="text-sm font-semibold tracking-[0.2em] text-[#C6BFB4] uppercase">
@@ -97,7 +147,10 @@ export default function RegisterPage() {
                     Full Name
                   </label>
                   <div className="relative">
-                    <User className="absolute top-1/2 left-4 -translate-y-1/2 text-[#999187]" size={19} />
+                    <User
+                      className="absolute top-1/2 left-4 -translate-y-1/2 text-[#999187]"
+                      size={19}
+                    />
                     <input
                       type="text"
                       name="name"
@@ -113,7 +166,10 @@ export default function RegisterPage() {
                     Email Address
                   </label>
                   <div className="relative">
-                    <Mail className="absolute top-1/2 left-4 -translate-y-1/2 text-[#999187]" size={19} />
+                    <Mail
+                      className="absolute top-1/2 left-4 -translate-y-1/2 text-[#999187]"
+                      size={19}
+                    />
                     <input
                       type="email"
                       name="email"
@@ -132,7 +188,10 @@ export default function RegisterPage() {
                     </span>
                   </label>
                   <div className="relative">
-                    <ImageIcon className="absolute top-1/2 left-4 -translate-y-1/2 text-[#999187]" size={19} />
+                    <ImageIcon
+                      className="absolute top-1/2 left-4 -translate-y-1/2 text-[#999187]"
+                      size={19}
+                    />
                     <input
                       type="url"
                       name="photo"
@@ -147,7 +206,10 @@ export default function RegisterPage() {
                     Password
                   </label>
                   <div className="relative">
-                    <Lock className="absolute top-1/2 left-4 -translate-y-1/2 text-[#999187]" size={19} />
+                    <Lock
+                      className="absolute top-1/2 left-4 -translate-y-1/2 text-[#999187]"
+                      size={19}
+                    />
                     <input
                       type={showPassword ? "text" : "password"}
                       name="password"
@@ -163,7 +225,11 @@ export default function RegisterPage() {
                       className="absolute top-1/2 right-4 -translate-y-1/2 text-[#999187]"
                       aria-label={showPassword ? "Hide password" : "Show password"}
                     >
-                      {showPassword ? <EyeOff size={19} /> : <Eye size={19} />}
+                      {showPassword ? (
+                        <EyeOff size={19} />
+                      ) : (
+                        <Eye size={19} />
+                      )}
                     </button>
                   </div>
 
@@ -196,10 +262,11 @@ export default function RegisterPage() {
 
                 <button
                   type="submit"
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#1E2022] py-4 text-sm font-semibold text-white transition hover:bg-[#34414A]"
+                  disabled={loading}
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#1E2022] py-4 text-sm font-semibold text-white transition hover:bg-[#34414A] disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  Create Account
-                  <ArrowRight size={18} />
+                  {loading ? "Creating Account..." : "Create Account"}
+                  {!loading && <ArrowRight size={18} />}
                 </button>
               </form>
 
@@ -219,10 +286,23 @@ export default function RegisterPage() {
                 className="flex w-full items-center justify-center gap-3 rounded-xl border border-[#E9E5DE] py-3.5 text-sm font-semibold text-[#35312D] transition hover:bg-[#F8F7F4]"
               >
                 <svg viewBox="0 0 48 48" className="h-5 w-5">
-                  <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5Z" transform="translate(0 4)" />
-                  <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.93c-.58 2.96-2.26 5.48-4.73 7.18l7.65 5.94c4.46-4.13 7.13-10.2 7.13-17.59Z" />
-                  <path fill="#FBBC05" d="M10.53 28.59a14.4 14.4 0 0 1 0-9.18l-7.98-6.19a23.98 23.98 0 0 0 0 21.56l7.98-6.19Z" />
-                  <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.9-5.86l-7.65-5.94c-2.13 1.43-4.86 2.28-8.25 2.28-6.26 0-11.57-4.22-13.46-9.91l-7.98 6.19C6.51 43.62 14.62 48 24 48Z" />
+                  <path
+                    fill="#EA4335"
+                    d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5Z"
+                    transform="translate(0 4)"
+                  />
+                  <path
+                    fill="#4285F4"
+                    d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.93c-.58 2.96-2.26 5.48-4.73 7.18l7.65 5.94c4.46-4.13 7.13-10.2 7.13-17.59Z"
+                  />
+                  <path
+                    fill="#FBBC05"
+                    d="M10.53 28.59a14.4 14.4 0 0 1 0-9.18l-7.98-6.19a23.98 23.98 0 0 0 0 21.56l7.98-6.19Z"
+                  />
+                  <path
+                    fill="#34A853"
+                    d="M24 48c6.48 0 11.93-2.13 15.9-5.86l-7.65-5.94c-2.13 1.43-4.86 2.28-8.25 2.28-6.26 0-11.57-4.22-13.46-9.91l-7.98 6.19C6.51 43.62 14.62 48 24 48Z"
+                  />
                 </svg>
                 Continue with Google
               </button>
